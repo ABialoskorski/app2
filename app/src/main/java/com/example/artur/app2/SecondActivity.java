@@ -38,6 +38,7 @@ import javax.crypto.NoSuchPaddingException;
 
 public class SecondActivity extends AppCompatActivity {
 
+    private static final android.util.Base64 Base64 = null;
     private TextView mheadinglabel;
     private ImageView mfingerprintimage;
     private TextView mparalabel;
@@ -119,16 +120,17 @@ public class SecondActivity extends AppCompatActivity {
             fingerprintManager = (FingerprintManager) getSystemService(FINGERPRINT_SERVICE);
             keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
 
-            if (fingerprintManager.isHardwareDetected()) {
+            if (!fingerprintManager.isHardwareDetected()) {
                 mparalabel.setText("Fingerprint scanner is not in this Device!");
-            } else if (keyguardManager.isKeyguardSecure()) {
+            } else if (!keyguardManager.isKeyguardSecure()) {
                 mparalabel.setText("Secure your lock screen");
             } else if (ContextCompat.checkSelfPermission(this, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
                 mparalabel.setText("Don't have access to use fingerprint");
-            } else if (fingerprintManager.hasEnrolledFingerprints()) {
+            } else if (!fingerprintManager.hasEnrolledFingerprints()) {
                 mparalabel.setText("You should at least 1 fingerprint to use this feature");
             } else {
                 mparalabel.setText("Place your finger on scanner");
+
             }
         }
 

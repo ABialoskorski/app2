@@ -10,6 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.M)
@@ -49,19 +50,12 @@ class FingerprintHandler extends FingerprintManager.AuthenticationCallback {
 
     private void update(String s, boolean b) {
 
-        TextView paraLabel = ((Activity)context).findViewById(R.id.paralabel);
-        ImageView imageView = ((Activity)context).findViewById(R.id.fingerprintimage);
         TextView profileNote2 = ((Activity)context).findViewById(R.id.tvProfileNote2);
-
-
-        paraLabel.setText(s);
+        
 
         if(!b){
-            paraLabel.setTextColor(ContextCompat.getColor(context, R.color.colorAccent));
-            profileNote2.setVisibility(View.GONE);
-
+            profileNote2.setVisibility(View.INVISIBLE);
         } else {
-            paraLabel.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
             profileNote2.setVisibility(View.VISIBLE);
         }
     }
